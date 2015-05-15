@@ -62,6 +62,33 @@ void libera_no(int p) {
   dispo = p;
 }
 
+void insere_depois(int p, int x) {
+  int q;
+
+  if (p != -1) {
+    q = pega_no();
+
+    lista[q].info = x;
+    lista[q].prox = lista[p].prox;
+    lista[q].prox = q;
+  }
+}
+
+void deleta_depois(int p, int *px) {
+  int q;
+
+  if (p == -1 || lista[p].prox == -1) {
+    printf("Impossivel remover");
+    return;
+  }
+
+  q = lista[p].prox;
+  *px = lista[q].info;
+  lista[p].prox = lista[q].prox;
+
+  libera_no(q);
+}
+
 // TODO: EXTRAIR EXEMPLO PRA FUNCAO
 //  As operações de inserção e remoção de nós utilizam a função
 // de busca. Considerando listas não ordenadas e a proibição de inserir chaves repetidas, temos:
